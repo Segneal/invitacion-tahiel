@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumpleaños de Tahiel - Boca Juniors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --boca-blue: #003DA5;
+            --boca-blue-mid: #002878;
+            --boca-blue-dark: #001A5E;
+            --boca-blue-deeper: #000D33;
+            --boca-gold: #FDBE11;
+            --boca-gold-light: #FFE066;
+            --boca-gold-pale: #FFF3C4;
+            --boca-gold-dark: #B8860B;
+            --white: #FFFFFF;
+            --white-soft: rgba(255, 255, 255, 0.92);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            overflow-x: hidden;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(0, 61, 165, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(253, 190, 17, 0.08) 0%, transparent 40%),
+                linear-gradient(160deg, #000814 0%, #001233 40%, #001845 100%);
+        }
+
+        /* Floating gold particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(1.5px 1.5px at 12% 18%, rgba(253, 190, 17, 0.7) 50%, transparent 50%),
+                radial-gradient(1px 1px at 88% 12%, rgba(253, 190, 17, 0.5) 50%, transparent 50%),
+                radial-gradient(2px 2px at 28% 75%, rgba(255, 224, 102, 0.6) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 72% 68%, rgba(253, 190, 17, 0.5) 50%, transparent 50%),
+                radial-gradient(1px 1px at 45% 45%, rgba(255, 224, 102, 0.4) 50%, transparent 50%),
+                radial-gradient(2px 2px at 8% 55%, rgba(253, 190, 17, 0.3) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 92% 35%, rgba(253, 190, 17, 0.4) 50%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: sparkle 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkle { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        /* ========== CARD ========== */
+        .invitation-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 960px;
+            aspect-ratio: 16 / 9;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 18px;
+            overflow: hidden;
+            /* Metallic gold border effect */
+            box-shadow:
+                inset 0 0 0 1px rgba(253, 190, 17, 0.3),
+                0 0 0 2px var(--boca-gold-dark),
+                0 0 0 4px var(--boca-gold),
+                0 0 0 6px var(--boca-gold-dark),
+                0 0 0 8px rgba(0, 18, 51, 0.8),
+                0 0 0 10px rgba(253, 190, 17, 0.15),
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                0 0 100px rgba(253, 190, 17, 0.08);
+            animation: cardEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px) scale(0.96);
+        }
+
+        @keyframes cardEntrance {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Gold stripe bars top & bottom */
+        .stripe-bar {
+            position: absolute;
+            left: 0; right: 0;
+            height: 6px;
+            z-index: 10;
+            background:
+                linear-gradient(180deg, var(--boca-gold-light), var(--boca-gold), var(--boca-gold-dark));
+            box-shadow: 0 2px 8px rgba(253, 190, 17, 0.3);
+        }
+        .stripe-bar.top { top: 0; }
+        .stripe-bar.bottom { bottom: 0; }
+
+        /* ========== LEFT PANEL ========== */
+        .panel-left {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 28px;
+            overflow: hidden;
+        }
+
+        /* Stadium BG */
+        .panel-left::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            background:
+                url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/La_Bombonera%2C_semifinal_2014.jpg/1280px-La_Bombonera%2C_semifinal_2014.jpg')
+                center/cover no-repeat;
+            filter: saturate(1.5) contrast(1.2) brightness(0.9);
+        }
+
+        /* Complex overlay for depth */
+        .panel-left::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(0, 40, 120, 0.55) 0%, rgba(0, 13, 51, 0.92) 100%),
+                linear-gradient(180deg, rgba(0, 61, 165, 0.2) 0%, rgba(0, 13, 51, 0.5) 100%);
+        }
+
+        .panel-left > * { position: relative; z-index: 3; }
+
+        /* Boca jersey stripe - subtle gold band */
+        .jersey-stripe {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2;
+            background: linear-gradient(
+                0deg,
+                transparent 0%, transparent 36%,
+                rgba(253, 190, 17, 0.07) 36%, rgba(253, 190, 17, 0.12) 50%, rgba(253, 190, 17, 0.07) 64%,
+                transparent 64%, transparent 100%
+            );
+            pointer-events: none;
+        }
+
+        /* Noise texture overlay */
+        .noise-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 128px;
+            pointer-events: none;
+        }
+
+        .logo-container {
+            animation: logoBounce 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+            margin-bottom: 10px;
+        }
+
+        @keyframes logoBounce {
+            0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+            60% { transform: scale(1.08) rotate(2deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 2px 12px rgba(253, 190, 17, 0.6)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+        }
+
+        .birthday-label {
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--boca-gold-pale);
+            margin-bottom: 2px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            animation: fadeSlideUp 0.8s ease 0.5s both;
+        }
+
+        .birthday-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 70px;
+            line-height: 1;
+            margin-bottom: 4px;
+            /* Metallic gold text */
+            background: linear-gradient(
+                180deg,
+                var(--boca-gold-pale) 0%,
+                var(--boca-gold) 30%,
+                var(--boca-gold-dark) 70%,
+                var(--boca-gold) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 3px 0 rgba(184, 134, 11, 0.7)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+            animation: nameEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        @keyframes nameEntrance {
+            0% { transform: scale(0.5); opacity: 0; letter-spacing: 18px; }
+            100% { transform: scale(1); opacity: 1; letter-spacing: 4px; }
+        }
+
+        .cumple-text {
+            font-family: 'Russo One', sans-serif;
+            font-size: 15px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+            animation: fadeSlideUp 0.8s ease 0.8s both;
+        }
+
+        @keyframes fadeSlideUp {
+            0% { transform: translateY(12px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Ball footer */
+        .left-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            animation: fadeSlideUp 0.8s ease 1s both;
+        }
+
+        .left-footer svg {
+            width: 18px; height: 18px;
+            fill: var(--boca-gold);
+            opacity: 0.7;
+            animation: ballSpin 10s linear infinite;
+            filter: drop-shadow(0 0 4px rgba(253, 190, 17, 0.4));
+        }
+
+        @keyframes ballSpin { to { transform: rotate(360deg); } }
+
+        .left-footer span {
+            font-family: 'Russo One', sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--boca-gold);
+            opacity: 0.6;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* ========== CENTER DIVIDER ========== */
+        .center-divider {
+            position: absolute;
+            top: 24px; bottom: 24px;
+            left: 50%;
+            width: 2px;
+            z-index: 5;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, transparent 0%, var(--boca-gold) 15%, var(--boca-gold) 85%, transparent 100%);
+            box-shadow: 0 0 8px rgba(253, 190, 17, 0.3), 0 0 20px rgba(253, 190, 17, 0.1);
+        }
+
+        .center-divider::before,
+        .center-divider::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px; height: 8px;
+            background: linear-gradient(135deg, var(--boca-gold-light), var(--boca-gold-dark));
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(253, 190, 17, 0.5);
+        }
+
+        .center-divider::before { top: 0; }
+        .center-divider::after { bottom: 0; }
+
+        /* ========== RIGHT PANEL ========== */
+        .panel-right {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px 30px 30px 34px;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(0, 61, 165, 0.15) 0%, transparent 50%),
+                linear-gradient(160deg, var(--boca-blue-dark) 0%, var(--boca-blue-deeper) 60%, #000a1f 100%);
+        }
+
+        /* Diagonal lines texture */
+        .panel-right::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent, transparent 20px,
+                rgba(253, 190, 17, 0.025) 20px, rgba(253, 190, 17, 0.025) 21px
+            );
+            pointer-events: none;
+        }
+
+        .panel-right > * { position: relative; z-index: 2; }
+
+        /* Section title */
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 11px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(253, 190, 17, 0.2);
+            animation: fadeSlideUp 0.6s ease 0.9s both;
+            /* Gold metallic text */
+            background: linear-gradient(90deg, var(--boca-gold-light), var(--boca-gold), var(--boca-gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Info rows */
+        .info-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+            animation: fadeSlideLeft 0.6s ease both;
+        }
+
+        .info-block:nth-child(2) { animation-delay: 1.0s; }
+        .info-block:nth-child(3) { animation-delay: 1.1s; }
+        .info-block:nth-child(4) { animation-delay: 1.2s; }
+
+        @keyframes fadeSlideLeft {
+            0% { transform: translateX(20px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .info-icon {
+            flex-shrink: 0;
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Rich gold gradient with depth */
+            background: linear-gradient(145deg, var(--boca-gold-light), var(--boca-gold), var(--boca-gold-dark));
+            box-shadow:
+                0 2px 8px rgba(253, 190, 17, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .info-icon svg {
+            width: 18px; height: 18px;
+            fill: var(--boca-blue-deeper);
+            stroke: none;
+        }
+
+        .info-content { flex: 1; }
+
+        .info-label {
+            font-weight: 700;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--boca-gold);
+            margin-bottom: 2px;
+            text-shadow: 0 0 10px rgba(253, 190, 17, 0.2);
+        }
+
+        .info-value {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--white-soft);
+            line-height: 1.3;
+        }
+
+        .info-value strong {
+            color: var(--boca-gold-light);
+            font-weight: 700;
+        }
+
+        /* Divider */
+        .detail-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(253, 190, 17, 0.4), rgba(253, 190, 17, 0.05));
+            margin: 8px 0 12px;
+            animation: fadeSlideLeft 0.6s ease 1.3s both;
+        }
+
+        /* Alerts */
+        .alerts-box {
+            background:
+                linear-gradient(135deg, rgba(253, 190, 17, 0.06) 0%, rgba(253, 190, 17, 0.02) 100%);
+            border: 1px solid rgba(253, 190, 17, 0.18);
+            border-radius: 10px;
+            padding: 12px 14px;
+            animation: fadeSlideLeft 0.6s ease 1.4s both;
+            backdrop-filter: blur(4px);
+        }
+
+        .alerts-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--boca-gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+            color: var(--white-soft);
+            font-size: 13px;
+        }
+
+        .alert-item:last-child { margin-bottom: 0; }
+
+        .alert-icon {
+            flex-shrink: 0;
+            width: 26px; height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(253, 190, 17, 0.12);
+            border: 1px solid rgba(253, 190, 17, 0.2);
+        }
+
+        .alert-icon svg {
+            width: 14px; height: 14px;
+            fill: var(--boca-gold);
+        }
+
+        .alert-item strong { color: var(--boca-gold-light); }
+
+        /* CTA */
+        .cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            animation: fadeSlideLeft 0.6s ease 1.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            font-family: 'Russo One', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--boca-blue-deeper);
+            padding: 10px 26px;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            /* Rich metallic gold button */
+            background: linear-gradient(145deg, var(--boca-gold-light), var(--boca-gold), var(--boca-gold-dark));
+            box-shadow:
+                0 3px 12px rgba(253, 190, 17, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(253, 190, 17, 0.1);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+            animation: btnShine 3s ease-in-out infinite;
+        }
+
+        @keyframes btnShine {
+            0% { transform: translateX(-100%) rotate(25deg); }
+            35%, 100% { transform: translateX(100%) rotate(25deg); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 6px 24px rgba(253, 190, 17, 0.5), 0 0 30px rgba(253, 190, 17, 0.15);
+        }
+
+        .vamos-boca {
+            font-family: 'Russo One', sans-serif;
+            font-size: 9px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--boca-gold), var(--boca-gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
+        }
+
+        /* ========== DOWNLOAD ========== */
+        .download-section {
+            text-align: center;
+            margin-top: 28px;
+            animation: fadeSlideUp 0.6s ease 2s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .download-btn {
+            font-family: 'Titillium Web', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--boca-gold);
+            background: rgba(253, 190, 17, 0.05);
+            border: 1px solid rgba(253, 190, 17, 0.4);
+            padding: 10px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .download-btn:hover {
+            background: var(--boca-gold);
+            color: var(--boca-blue-deeper);
+            border-color: var(--boca-gold);
+            box-shadow: 0 0 24px rgba(253, 190, 17, 0.3);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 700px) {
+            body { padding: 16px; }
+            .invitation-card {
+                grid-template-columns: 1fr;
+                aspect-ratio: auto;
+                max-width: 420px;
+            }
+            .panel-left { padding: 28px 20px 24px; }
+            .birthday-name { font-size: 50px; }
+            .center-divider {
+                position: relative;
+                top: auto; bottom: auto;
+                left: 20px; right: 20px;
+                width: auto; height: 2px;
+                transform: none;
+                background: linear-gradient(90deg, transparent, var(--boca-gold), var(--boca-gold), transparent);
+                box-shadow: 0 0 8px rgba(253, 190, 17, 0.2);
+            }
+            .center-divider::before { top: 50%; left: 0; transform: translateY(-50%); }
+            .center-divider::after { top: 50%; right: 0; left: auto; transform: translateY(-50%); }
+            .panel-right { padding: 20px; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .download-section { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="invitation-wrapper">
+    <div class="invitation-card" id="invitationCard">
+
+        <div class="stripe-bar top"></div>
+        <div class="stripe-bar bottom"></div>
+
+        <!-- LEFT PANEL -->
+        <div class="panel-left">
+            <div class="jersey-stripe"></div>
+            <div class="noise-overlay"></div>
+
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Boca_Juniors_logo18.svg/500px-Boca_Juniors_logo18.svg.png"
+                     alt="Boca Juniors" crossorigin="anonymous">
+            </div>
+            <div class="birthday-label">Cumpleaños de</div>
+            <div class="birthday-name">TAHIEL</div>
+            <div class="cumple-text">Cumple Años</div>
+
+            <div class="left-footer">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c.83 0 1.5.67 1.5 1.5S12.83 8 12 8s-1.5-.67-1.5-1.5S11.17 5 12 5zm-4.05 3.22c.74-.42 1.68-.17 2.1.57l.95 1.64c.42.74.17 1.68-.57 2.1s-1.68.17-2.1-.57l-.95-1.64c-.42-.74-.17-1.68.57-2.1zm8.1 0c.74.42.99 1.36.57 2.1l-.95 1.64c-.42.74-1.36.99-2.1.57s-.99-1.36-.57-2.1l.95-1.64c.42-.74 1.36-.99 2.1-.57zM7 13.5c0-.83.67-1.5 1.5-1.5h1c.83 0 1.5.67 1.5 1.5v1.9c0 .83-.67 1.5-1.5 1.5h-1c-.83 0-1.5-.67-1.5-1.5v-1.9zm6 0c0-.83.67-1.5 1.5-1.5h1c.83 0 1.5.67 1.5 1.5v1.9c0 .83-.67 1.5-1.5 1.5h-1c-.83 0-1.5-.67-1.5-1.5v-1.9z"/></svg>
+                <span>Estás Invitado</span>
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c.83 0 1.5.67 1.5 1.5S12.83 8 12 8s-1.5-.67-1.5-1.5S11.17 5 12 5zm-4.05 3.22c.74-.42 1.68-.17 2.1.57l.95 1.64c.42.74.17 1.68-.57 2.1s-1.68.17-2.1-.57l-.95-1.64c-.42-.74-.17-1.68.57-2.1zm8.1 0c.74.42.99 1.36.57 2.1l-.95 1.64c-.42.74-1.36.99-2.1.57s-.99-1.36-.57-2.1l.95-1.64c.42-.74 1.36-.99 2.1-.57zM7 13.5c0-.83.67-1.5 1.5-1.5h1c.83 0 1.5.67 1.5 1.5v1.9c0 .83-.67 1.5-1.5 1.5h-1c-.83 0-1.5-.67-1.5-1.5v-1.9zm6 0c0-.83.67-1.5 1.5-1.5h1c.83 0 1.5.67 1.5 1.5v1.9c0 .83-.67 1.5-1.5 1.5h-1c-.83 0-1.5-.67-1.5-1.5v-1.9z"/></svg>
+            </div>
+        </div>
+
+        <div class="center-divider"></div>
+
+        <!-- RIGHT PANEL -->
+        <div class="panel-right">
+            <div class="section-title">Datos del Partido</div>
+
+            <div class="info-block">
+                <div class="info-icon">
+                    <!-- Clock icon -->
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>
+                </div>
+                <div class="info-content">
+                    <div class="info-label">Horario</div>
+                    <div class="info-value"><strong>13:00 a 17:30 hs</strong></div>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-icon">
+                    <!-- Map pin icon -->
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <div class="info-content">
+                    <div class="info-label">Dirección</div>
+                    <div class="info-value">Guatemala 1748, Luis Guillón</div>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-icon">
+                    <!-- House/Quinta icon -->
+                    <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 2.84L18 11v7h-2v-6H8v6H6v-7l6-5.16z"/><path d="M6 11v7h2v-6h8v6h2v-7l-6-5.16L6 11z"/></svg>
+                </div>
+                <div class="info-content">
+                    <div class="info-label">Lugar</div>
+                    <div class="info-value">Quinta, <strong>Estilo Campo</strong></div>
+                </div>
+            </div>
+
+            <div class="detail-divider"></div>
+
+            <div class="alerts-box">
+                <div class="alerts-title">Importante</div>
+                <div class="alert-item">
+                    <div class="alert-icon">
+                        <!-- Water drop icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg>
+                    </div>
+                    <span>Traer <strong>ropa de agua</strong> y <strong>toallón</strong></span>
+                </div>
+                <div class="alert-item">
+                    <div class="alert-icon">
+                        <!-- Phone/confirm icon -->
+                        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                    </div>
+                    <span><strong>Confirmar asistencia</strong></span>
+                </div>
+            </div>
+
+            <div class="cta-row">
+                <a href="#" class="cta-button" onclick="return false;">Te Esperamos</a>
+                <span class="vamos-boca">Vamos Boca</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="downloadImage()">Descargar Invitación</button>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function downloadImage() {
+        const card = document.getElementById('invitationCard');
+        const btn = document.querySelector('.download-btn');
+        btn.textContent = 'Generando...';
+        btn.disabled = true;
+
+        card.style.animation = 'none';
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+
+        const allAnimated = card.querySelectorAll('*');
+        const originalStyles = [];
+        allAnimated.forEach((el, i) => {
+            originalStyles[i] = {
+                animation: el.style.animation,
+                opacity: el.style.opacity,
+                transform: el.style.transform
+            };
+            el.style.animation = 'none';
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+
+        setTimeout(() => {
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: false,
+                backgroundColor: '#000D33',
+                logging: false,
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'invitacion-tahiel-boca.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                card.style.animation = '';
+                card.style.opacity = '';
+                card.style.transform = '';
+                allAnimated.forEach((el, i) => {
+                    el.style.animation = originalStyles[i].animation;
+                    el.style.opacity = originalStyles[i].opacity;
+                    el.style.transform = originalStyles[i].transform;
+                });
+
+                btn.textContent = 'Descargar Invitación';
+                btn.disabled = false;
+            }).catch(err => {
+                console.error('Error:', err);
+                btn.textContent = 'Descargar Invitación';
+                btn.disabled = false;
+            });
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
